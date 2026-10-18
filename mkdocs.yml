@@ -1,0 +1,28 @@
+site_name: ContentClips Docs Demo
+site_description: Professional docs sites shipped in 24 hours — Docusaurus/MkDocs
+theme:
+  name: material
+  features: [navigation.instant, search.highlight, content.code.copy]
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Dark
+    - scheme: default
+      toggle:
+        icon: material/brightness-6
+        name: Light
+extra_css:
+  - stylesheets/quillmark.css
+nav:
+  - Home: index.md
+  - Workflow: workflow.md
+  - Setup Guide: setup.md
+  - API Reference: api-reference.md
+  - Complete Guide: guide.md
+  - FAQ: faq.md
+  - Changelog: changelog.md
+plugins:
+  - search
