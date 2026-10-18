@@ -1,5 +1,12 @@
 site_name: ContentClips Docs Demo
-site_description: Professional docs sites shipped in 24 hours — Docusaurus/MkDocs
+site_description: Professional docs sites shipped in 24 hours - Docusaurus/MkDocs
+docs_dir: .
+exclude_docs: |
+  README.md
+  preview.png
+  preview_quillmark.png
+  mkdocs.yml
+  .github/**
 theme:
   name: material
   features: [navigation.instant, search.highlight, content.code.copy]
@@ -15,7 +22,7 @@ theme:
         icon: material/brightness-6
         name: Light
 extra_css:
-  - stylesheets/quillmark.css
+  - quillmark.css
 nav:
   - Home: index.md
   - Workflow: workflow.md
