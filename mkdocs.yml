@@ -1,7 +1,9 @@
 site_name: ContentClips Docs Demo
-site_description: Professional docs sites shipped in 24 hours — Docusaurus/MkDocs
+site_description: Professional docs sites shipped in 24 hours - Docusaurus/MkDocs
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
   features: [navigation.instant, search.highlight, content.code.copy]
   palette:
     - scheme: slate
