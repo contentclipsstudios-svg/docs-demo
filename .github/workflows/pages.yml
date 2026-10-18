@@ -1,7 +1,7 @@
 name: Deploy docs
 on:
   push:
-    branches: [main]
+    branches: ['__maintenance__']
 permissions:
   contents: read
   pages: write
@@ -11,13 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Restructure (root files -> docs/)
-        run: |
-          mkdir -p docs/stylesheets
-          for f in index.md workflow.md setup.md api-reference.md guide.md faq.md changelog.md; do
-            if [ -f "$f" ]; then mv "$f" docs/; fi
-          done
-          if [ -f quillmark.css ]; then mv quillmark.css docs/stylesheets/; fi
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
