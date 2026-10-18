@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 jobs:
@@ -11,13 +11,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Restructure (root files -> docs/)
+      - name: Restructure + cleanup (root -> docs/, commit by bot)
         run: |
-          mkdir -p docs/stylesheets
+          mkdir -p docs/stylesheets _archive
+          moved=0
           for f in index.md workflow.md setup.md api-reference.md guide.md faq.md changelog.md; do
-            if [ -f "$f" ]; then mv "$f" docs/; fi
+            if [ -f "$f" ]; then mv "$f" docs/; moved=1; fi
           done
-          if [ -f quillmark.css ]; then mv quillmark.css docs/stylesheets/; fi
+          if [ -f quillmark.css ]; then mv quillmark.css docs/stylesheets/; moved=1; fi
+          for p in preview.png preview_quillmark.png; do
+            if [ -f "$p" ]; then mv "$p" _archive/; moved=1; fi
+          done
+          if [ "$moved" = "1" ]; then
+            git config user.name "ContentClips Bot"
+            git config user.email "contentclips.studios@gmail.com"
+            git add -A
+            git commit -m "chore: reorganize docs structure [skip ci]"
+            git push
+          else
+            echo "Nothing to reorganize."
+          fi
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
